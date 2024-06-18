@@ -12,11 +12,14 @@ VOID DrawMap(const MAP& map)
 				int index = y * layer.width + x;
 				int ID = layer.tiles[index].ID;
 
-				if (ID == 0)continue;
+				if (ID == -1)continue;
+				// タイルIDがfirstgidより小さい場合はスキップ
+				if (ID < map.tileSet.firstGrid) continue;
 
 				ID -= map.tileSet.firstGrid;
-				int tileX = (ID % (map.tileSet.imageWidth / map.tileSet.imageWidth) * map.tileSet.tileWidth);
-				int tileY = (ID / (map.tileSet.imageWidth / map.tileSet.tileWidth)) * map.tileSet.tileHeight;
+				int tilesPerRow = map.tileSet.imageWidth / map.tileSet.tileWidth;
+				int tileX = (ID % tilesPerRow) * map.tileSet.tileWidth;
+				int tileY = (ID / tilesPerRow) * map.tileSet.tileHeight;
 
 				DrawRectGraph(x * map.tileSet.tileWidth, y * map.tileSet.tileHeight, tileX, tileY, 
 							map.tileSet.tileWidth, map.tileSet.tileHeight, 

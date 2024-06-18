@@ -12,18 +12,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 
     ChangeWindowMode(TRUE);//非全画面にセット
-    SetGraphMode(640,480, 32);//画面サイズ指定
+    SetGraphMode(1280,720, 32);//画面サイズ指定
     SetOutApplicationLogValidFlag(FALSE);//Log.txtを生成しないように設定
     if (DxLib_Init() == 1) { return -1; }//初期化に失敗時にエラーを吐かせて終了
 
     MAP map;
     TILESET tileset;
-    tileset.firstGrid = 1;
+    tileset.firstGrid = 0;
     tileset.image = "IMAGE\\mapchip1.png";
     tileset.tileWidth = 32;
     tileset.tileHeight = 32;
     tileset.imageWidth = 1024;
-    tileset.imageHeight = 1024;
+    tileset.imageHeight = 1312;
     tileset.textureHandle = LoadGraph(tileset.image.c_str());
     
     map.tileSet = tileset;
